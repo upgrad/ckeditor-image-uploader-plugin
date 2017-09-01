@@ -80,7 +80,7 @@ CKEDITOR.plugins.add( 'simage', {
 					editor.insertElement(loaderElem)
 					CKEDITOR.currentInstance.setReadOnly(true)
 					$.ajax({
-						url: editor.config.urlMap[editor.config.env],
+						url: editor.config.imageUploadURL,
 						type: 'POST',
 						data: formData,
 						processData: false,
