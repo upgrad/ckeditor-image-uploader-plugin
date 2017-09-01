@@ -10,7 +10,7 @@ CKEDITOR.plugins.add( 'simage', {
 				a.click()
 				a.onchange = function(){
 					file = a.files[0];
-					$(CKEDITOR.currentInstance).trigger('preventFormSubmit')
+					$(CKEDITOR.currentInstance).trigger('imageUploading')
 					curr = CKEDITOR.currentInstance
 					if (file.size > 5000000){
 						b = document.createElement('div')
@@ -32,7 +32,7 @@ CKEDITOR.plugins.add( 'simage', {
 							b = document.querySelector('.alert-danger')
 							b.parentNode.removeChild(b)
 						} 
-						$(CKEDITOR.instances[curr.name]).trigger('enableFormSubmit')
+						$(CKEDITOR.instances[curr.name]).trigger('imageUploaded')
 						return
 					}else if (['jpeg','jpg','png','svg','gif','tif', 'svg+xml'].indexOf(file.type.split('/')[1]) === -1){
 						b = document.createElement('div')
@@ -54,7 +54,7 @@ CKEDITOR.plugins.add( 'simage', {
 							b = document.querySelector('.alert-danger')
 							b.parentNode.removeChild(b)
 						} 
-						$(CKEDITOR.instances[curr.name]).trigger('enableFormSubmit')
+						$(CKEDITOR.instances[curr.name]).trigger('imageUploaded')
 						return
 					}
 					img = new Image()
@@ -113,7 +113,7 @@ CKEDITOR.plugins.add( 'simage', {
 								editor.insertElement(elem)
 								editor.insertElement(newLine)
 								loaderElem.remove()
-								$(CKEDITOR.instances[curr.name]).trigger('enableFormSubmit')
+								$(CKEDITOR.instances[curr.name]).trigger('imageUploaded')
 							}
 						} 
 					}(this))).error((function(_this){
@@ -131,7 +131,7 @@ CKEDITOR.plugins.add( 'simage', {
 							e = document.querySelector('.error-space')
 							e.appendChild(b)
 							loaderElem.remove()
-							$(CKEDITOR.instances[curr.name]).trigger('enableFormSubmit')
+							$(CKEDITOR.instances[curr.name]).trigger('imageUploaded')
 							setTimeout(function(){ 
 								alert = document.querySelector('.alert-danger')
 								alert.parentNode.removeChild(alert)
