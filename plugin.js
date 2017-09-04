@@ -1,4 +1,3 @@
-ECMASCRIPT6_STRICT
 CKEDITOR.plugins.add( 'simage', {
 	icons: 'simage',
 	allowedContent: 'img[alt,!src,width,height,data-width,data-height]{border-style,border-width,float,height,margin‌​,margin-bottom,margi‌​n-left,margin-right,‌​margin-top,width}',
