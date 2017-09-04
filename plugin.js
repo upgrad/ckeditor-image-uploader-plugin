@@ -1,3 +1,4 @@
+ECMASCRIPT6_STRICT
 CKEDITOR.plugins.add( 'simage', {
 	icons: 'simage',
 	allowedContent: 'img[alt,!src,width,height,data-width,data-height]{border-style,border-width,float,height,margin‌​,margin-bottom,margi‌​n-left,margin-right,‌​margin-top,width}',
@@ -66,15 +67,7 @@ CKEDITOR.plugins.add( 'simage', {
 					formData = new FormData;
 					formData.append('file', file);
 					loaderElem = new CKEDITOR.dom.element('loader-elem')
-					loaderHtmlStr = `<div style="position: relative;
-												 z-index: 100;
-												 width: 100%;height: 100%;
-												 text-align: center;
-												 background: white;
-												 opacity: 0.75;
-												 pointer-events:none"> 
-										<img src="/ajax_loader_gray_64.gif" style="width: 30px;height: 30px;margin-top: 100px;">
-									</div>`
+					loaderHtmlStr = '<div style="position: relative; z-index: 100;width: 100%;height: 100%;text-align: center;background: white;opacity: 0.75;pointer-events:none">' + '<img src="/ajax_loader_gray_64.gif" style="width: 30px;height: 30px;margin-top: 100px;">' + '</div>'
 					loaderDomEle = CKEDITOR.dom.element.createFromHtml(loaderHtmlStr)
 					loaderElem.append(loaderDomEle)
 					editor.insertElement(loaderElem)
