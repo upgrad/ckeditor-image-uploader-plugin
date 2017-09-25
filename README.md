@@ -3,11 +3,11 @@ An open source plugin for CKEDITOR to upload images saved on your local machine.
 
 # How to install?
 - You can use this plugin with CKEDITOR. You need to configure the end point where you want to store the images uploaded using this plugin. Add it in your config.js as follows:
-```
-CKEDITOR.config.extraPlugins: 'simage'  //to enable to plugin
-CKEDITOR.config.imageUploadURL: <INSERT URL>
-CKEDITOR.config.dataParser: func(data)
-```
+	```
+	CKEDITOR.config.extraPlugins: 'simage'  //to enable to plugin
+	CKEDITOR.config.imageUploadURL: <INSERT URL>
+	CKEDITOR.config.dataParser: func(data)
+	```
 
 - The `dataParser` attribute expects a `function` with a parameter in which you should pass the `data` returned by the endpoint that you have configured (`imageUploadURL`) . This function is expected to return a url. This url will be set to the `src` attribute of `image` html element.
 
@@ -33,7 +33,7 @@ CKEDITOR.config.dataParser: func(data)
 This is `optional`, in case you don't specify `srcset` attribute in config.js, it will pick up the image from `src` which is set by the return value of `dataParser` function. 
 `srcSet` attribute should be configured to be a function which returns the expected string that you want to set in `srcset` html attribute. Response returned by the endpoint that you have configured is passed to this function as an argument. Add the following statement in config.js to enable `srcset`:
 
-```config.srcSet: func(data)```
+	```config.srcSet: func(data)```
 
 - Example of data expected by `srcset` function
 	```
@@ -61,7 +61,7 @@ This is `optional`, in case you don't specify `srcset` attribute in config.js, i
 	```
 
 The above function should return a `string` of the following form:
-```"image-1x.png 1x, image-2x.png 2x, image-3x.png 3x, image-4x.png 4x"```
+	```"image-1x.png 1x, image-2x.png 2x, image-3x.png 3x, image-4x.png 4x"```
 	
 - You can listen to `preventFormSubmit` event to do anything while the image is uploading. 
 For example, this can be a hook to display a wait icon while the image is uploading. 
