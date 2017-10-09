@@ -81,9 +81,9 @@ CKEDITOR.plugins.add( 'simage', {
 						return function(data, textStatus, jqXHR) {
 							var isNew;
 							data = JSON.parse(data)
-							if (data.success) {
+							if (jqXHR.status == 200) {
 								CKEDITOR.instances[curr.name].setReadOnly(false)
-								url = data.data.url
+								url = editor.config.dataParser(data)	
 								elem = new CKEDITOR.dom.element( 'elem' )
 								maxWidth = Math.min(inputWidth, 600)
 								maxHeight = Math.min(inputHeight, 600)
@@ -98,7 +98,12 @@ CKEDITOR.plugins.add( 'simage', {
 									height = maxHeight
 								}
 								newLine = CKEDITOR.dom.element.createFromHtml('<p><br></p>')
-								imgElem = '<img src="' + url + '" class="image-editor" data-width="' + inputWidth + '" data-height="' + inputHeight + '" height="' + height + '" width="' + width + '">'
+								if (editor.config.srcSet){
+									srcSet = editor.config.srcSet(data)
+									imgElem = '<img src="' + url + '" class="image-editor" srcset="'+ srcSet +'" data-width="' + inputWidth + '" data-height="' + inputHeight + '" height="' + height + '" width="' + width + '">'
+								} else{
+									imgElem = '<img src="' + url + '" class="image-editor" data-width="' + inputWidth + '" data-height="' + inputHeight + '" height="' + height + '" width="' + width + '">'
+								}		
 								imgDomElem = CKEDITOR.dom.element.createFromHtml(imgElem)
 								elem.append(imgDomElem)
 								editor.insertElement(newLine)
