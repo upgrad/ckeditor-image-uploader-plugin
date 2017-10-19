@@ -10,7 +10,7 @@ CKEDITOR.plugins.add( 'simage', {
 				a.click()
 				a.onchange = function(){
 					file = a.files[0];
-					$(CKEDITOR.currentInstance).trigger('imageUploading')
+					$(CKEDITOR.currentInstance).trigger('enableFormSubmit')
 					curr = CKEDITOR.currentInstance
 					if (file.size > 5000000){
 						b = document.createElement('div')
@@ -32,7 +32,7 @@ CKEDITOR.plugins.add( 'simage', {
 							b = document.querySelector('.alert-danger')
 							b.parentNode.removeChild(b)
 						} 
-						$(CKEDITOR.instances[curr.name]).trigger('imageUploaded')
+						$(CKEDITOR.instances[curr.name]).trigger('enableFormSubmit')
 						return
 					}else if (['jpeg','jpg','png','svg','gif','tif', 'svg+xml'].indexOf(file.type.split('/')[1]) === -1){
 						b = document.createElement('div')
@@ -54,7 +54,7 @@ CKEDITOR.plugins.add( 'simage', {
 							b = document.querySelector('.alert-danger')
 							b.parentNode.removeChild(b)
 						} 
-						$(CKEDITOR.instances[curr.name]).trigger('imageUploaded')
+						$(CKEDITOR.instances[curr.name]).trigger('enableFormSubmit')
 						return
 					}
 					img = new Image()
@@ -66,7 +66,7 @@ CKEDITOR.plugins.add( 'simage', {
 					formData = new FormData;
 					formData.append('file', file);
 					loaderElem = new CKEDITOR.dom.element('loader-elem')
-					loaderHtmlStr = '<div style="position: relative; z-index: 100;width: 100%;height: 100%;text-align: center;background: white;opacity: 0.75;pointer-events:none">' + '<img src="/ajax_loader_gray_64.gif" style="width: 30px;height: 30px;margin-top: 100px;">' + '</div>'
+					loaderHtmlStr = '<div style="position: relative; z-index: 100;width: 100%;height: 100%;text-align: center;background: white;opacity: 0.75;pointer-events:none">' + '<div style="width: 100%;height: 30px;margin-top: 100px;">Please wait while image is uploading...</div>' + '</div>'
 					loaderDomEle = CKEDITOR.dom.element.createFromHtml(loaderHtmlStr)
 					loaderElem.append(loaderDomEle)
 					editor.insertElement(loaderElem)
@@ -110,7 +110,7 @@ CKEDITOR.plugins.add( 'simage', {
 								editor.insertElement(elem)
 								editor.insertElement(newLine)
 								loaderElem.remove()
-								$(CKEDITOR.instances[curr.name]).trigger('imageUploaded')
+								$(CKEDITOR.instances[curr.name]).trigger('enableFormSubmit')
 							}
 						} 
 					}(this))).error((function(_this){
@@ -128,7 +128,7 @@ CKEDITOR.plugins.add( 'simage', {
 							e = document.querySelector('.error-space')
 							e.appendChild(b)
 							loaderElem.remove()
-							$(CKEDITOR.instances[curr.name]).trigger('imageUploaded')
+							$(CKEDITOR.instances[curr.name]).trigger('enableFormSubmit')
 							setTimeout(function(){ 
 								alert = document.querySelector('.alert-danger')
 								alert.parentNode.removeChild(alert)
