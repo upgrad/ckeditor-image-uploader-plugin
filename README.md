@@ -5,6 +5,8 @@ An open source plugin for CKEDITOR to upload images saved on your local machine.
 
 -  Click on download button, rename the folder to simage and add the entire simage folder into CKEditor plugins folder.
 
+- Add it in toolbar configuration with your config.js file to make the simage button visible on your CKEditor toolbar.
+
 - You can use this plugin with CKEDITOR. You need to configure the end point where you want to store the images uploaded using this plugin. Add it in your config.js as follows:
 	```
 	CKEDITOR.config.extraPlugins: 'simage'  //to enable to plugin
