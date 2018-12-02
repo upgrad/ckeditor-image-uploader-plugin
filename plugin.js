@@ -80,7 +80,9 @@ CKEDITOR.plugins.add( 'simage', {
 					}).success((function(_this) {
 						return function(data, textStatus, jqXHR) {
 							var isNew;
-							data = JSON.parse(data)
+							try {
+								data = JSON.parse(data)
+							} catch {}
 							if (jqXHR.status == 200) {
 								CKEDITOR.instances[curr.name].setReadOnly(false)
 								url = editor.config.dataParser(data)	
