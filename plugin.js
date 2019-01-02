@@ -7,7 +7,6 @@ CKEDITOR.plugins.add( 'simage', {
 				a = document.createElement('input')
 				a.setAttribute('type','file')
 				a.setAttribute('accept', '.jpg,.jpeg,.png,.tif,.gif,.svg')
-				a.click()
 				a.onchange = function(){
 					file = a.files[0];
 					$(CKEDITOR.currentInstance).trigger('preventFormSubmit')
@@ -147,9 +146,8 @@ CKEDITOR.plugins.add( 'simage', {
 							} 
 						}
 					}(this)))
-
 				}
-
+				a.click()
 			}
 		});
 
